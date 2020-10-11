@@ -41,4 +41,16 @@ void print_Graph(Graph* g)
     int i;
     Edgenode *p;
 
+    for (i=0; i<g->nVertices; i++)
+    {
+        std::cout<<i;
+        p = g->edges[i];
+        while (p != NULL)
+        {
+            std::cout<< p->y;
+            p = p->next;
+        }
+        std::cout<< std::endl;
+    }
+
 }
