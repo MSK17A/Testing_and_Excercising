@@ -13,7 +13,7 @@ class Graph
 {
 private:
     Egdenode* edges[MAXV+1]; /* adjacency info */
-    int degree[MAXV+1]; /* outdegree if each vertex */
+    int degree[MAXV+1]; /* outdegree of each vertex */
     int nVertices; /* number of vertices */
     int nEdges; /* number of edges */
     bool directed; /* is the graph directed? */
