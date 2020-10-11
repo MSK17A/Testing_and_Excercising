@@ -2,17 +2,18 @@
 
 #define MAXV    1000 /* Maximum number of vertices */
 
-class Egdenode
+class Edgenode
 {
+public:
     int y; /* Adjency info */
     int weight; /* edge weight */
-    Egdenode* next; /* Next edge in list */
+    Edgenode* next; /* Next edge in list */
 };
 
 class Graph
 {
 public:
-    Egdenode* edges[MAXV+1]; /* adjacency info */
+    Edgenode* edges[MAXV+1]; /* adjacency info */
     int degree[MAXV+1]; /* outdegree of each vertex */
     int nVertices; /* number of vertices */
     int nEdges; /* number of edges */
