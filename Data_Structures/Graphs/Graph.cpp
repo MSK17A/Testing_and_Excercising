@@ -3,7 +3,7 @@
 
 void graph_init(Graph *g, bool directed)
 {
-    g ->nVertices = 0;
+    g ->nVertices = 5;
     g ->nEdges = 0;
     g ->directed = directed;
 
