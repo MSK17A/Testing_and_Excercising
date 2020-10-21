@@ -16,5 +16,7 @@ int main()
     insert_edge(g, 4, 5, false);
 
     print_Graph(g);
+
+    BFS(g, 1);
     return 0;
 }

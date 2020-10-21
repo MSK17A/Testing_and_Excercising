@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include <iostream>
+#include <queue>
 
 void graph_init(Graph* g, bool directed)
 {
@@ -55,4 +56,65 @@ void print_Graph(Graph* g)
         std::cout << std::endl;
     }
 
+}
+
+bool proccessed[MAXV + 1];
+bool discovered[MAXV + 1];
+int parent[MAXV + 1];
+
+void BFS(Graph* G, int startV)
+{
+    std::queue<int> Q; /* A FIFO queue of discovered vertices */
+    int v; /* Current vertex */
+    int y; /* Successor vertex */
+    Edgenode* p; /* Temporary pointer to the edges */
+
+    for (int i = 0; i < G->nVertices; i++)
+    {
+        proccessed[i] = false;
+        discovered[i] = false;
+        parent[i] = -1;
+    }
+    Q.push(startV);
+    discovered[startV] = true;
+
+    while (!Q.empty())
+    {
+        v = Q.front(); /* First in first out */
+        Q.pop();
+        p = G->edges[v];
+        proccess_vertex_early(v);
+
+        while (p != NULL)
+        {
+            y = p->y;
+            if (!proccessed[y] || G->directed)
+                proccess_edge(v, y);
+            if (!discovered[y])
+            {
+                Q.push(y);
+                discovered[y] = true;
+                parent[y] = v;
+            }
+            p = p->next;
+        }
+        proccessed[v] = true;
+        proccess_vertex_late(v);
+    }
+}
+
+void proccess_vertex_early(int v)
+{
+}
+
+void proccess_vertex_late(int v)
+{
+    std::cout << "proccessed vertex " << v;
+    std::cout << std::endl;
+}
+
+void proccess_edge(int v, int y)
+{
+    std::cout << "proccessed edge (" << v << "," << y << ")";
+    std::cout << std::endl;
 }
