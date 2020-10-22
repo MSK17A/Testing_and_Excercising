@@ -17,6 +17,9 @@ int main()
 
     print_Graph(g);
 
-    BFS(g, 1);
+    //BFS(g, 1);
+    initialize_search(g);
+    twocolor(g);
+
     return 0;
 }
