@@ -19,7 +19,7 @@ int main()
 
     //BFS(g, 1);
     initialize_search(g);
-    twocolor(g);
+    DFS(g,1);
 
     return 0;
 }

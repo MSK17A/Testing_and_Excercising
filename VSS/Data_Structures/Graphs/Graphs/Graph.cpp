@@ -118,20 +118,20 @@ void proccess_vertex_early(int v)
 
 void proccess_vertex_late(int v)
 {
-    /*std::cout << "proccessed vertex " << v;
-    std::cout << std::endl;*/
+    std::cout << "proccessed vertex " << v;
+    std::cout << std::endl;
 }
 
 void proccess_edge(int x, int y)
 {
-    /*std::cout << "proccessed edge (" << v << "," << y << ")";
-    std::cout << std::endl;*/
+    std::cout << "proccessed edge (" << x << "," << y << ")";
+    std::cout << std::endl;
 
-    if (color[x] == color[y])
+    /*if (color[x] == color[y])
     {
         std::cout << "Not bipartite because of edge (" << x << "," << y << ")";
         std::cout << std::endl;
-    }
+    }*/
 
     color[y] = oppositeColor(color[x]);
 }
@@ -179,4 +179,40 @@ int oppositeColor(int color)
         return WHITE;
 
     return UNCOLORED;
+}
+
+int time = 0;
+int entry_time[MAXV + 1];
+int exit_time[MAXV + 1];
+
+void DFS(Graph* G, int v)
+{
+    Edgenode* p;
+    int y;
+
+    discovered[v] = true;
+    proccess_vertex_early(v);
+    time++;
+    entry_time[v] = time;
+
+    p = G->edges[v];
+    while (p !=NULL )
+    {
+        y = p->y;
+        if (!discovered[y])
+        {
+            parent[y] = v;
+            proccess_edge(v, y);
+            DFS(G, y);
+        }
+        else if ((!proccessed[v] && parent[v] != y) || G->directed)
+            proccess_edge(v, y);
+
+        p = p->next;
+    }
+    proccess_vertex_late(v);
+    time++;
+    exit_time[v] = time;
+
+    proccessed[v] = true;
 }
