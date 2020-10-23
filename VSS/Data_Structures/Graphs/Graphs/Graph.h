@@ -37,3 +37,4 @@ void connected_components(Graph* G);
 void twocolor(Graph* G);
 int oppositeColor(int color);
 void DFS(Graph* G, int startV);
+void find_path(int startV, int endV, int parent[]);

@@ -1,5 +1,19 @@
 #include "Graph.h"
 
+bool proccessed[MAXV + 1];
+bool discovered[MAXV + 1];
+int parent[MAXV + 1];
+
+#define UNCOLORED 0
+#define BLACK 1
+#define WHITE 2
+int color[MAXV + 1];
+
+int time = 0;
+int entry_time[MAXV + 1];
+int exit_time[MAXV + 1];
+bool finished = false;
+
 void graph_init(Graph* g, bool directed)
 {
     g->nVertices = 6;
@@ -55,15 +69,6 @@ void print_Graph(Graph* g)
     }
 
 }
-
-bool proccessed[MAXV + 1];
-bool discovered[MAXV + 1];
-int parent[MAXV + 1];
-
-#define UNCOLORED 0
-#define BLACK 1
-#define WHITE 2
-int color[MAXV + 1];
 
 void initialize_search(Graph* G)
 {
@@ -129,9 +134,16 @@ void proccess_edge(int x, int y)
     {
         std::cout << "Not bipartite because of edge (" << x << "," << y << ")";
         std::cout << std::endl;
-    }*/
+    }
 
-    color[y] = oppositeColor(color[x]);
+    color[y] = oppositeColor(color[x]);*/
+
+    if (discovered[y] && parent[x] != y)
+    {
+        std::cout << "Edge found (" << x << "," << y << ")" << std::endl;
+        find_path(y, x, parent);
+        finished = true;
+    }
 }
 
 void connected_components(Graph* G)
@@ -179,10 +191,6 @@ int oppositeColor(int color)
     return UNCOLORED;
 }
 
-int time = 0;
-int entry_time[MAXV + 1];
-int exit_time[MAXV + 1];
-
 void DFS(Graph* G, int v)
 {
     Edgenode* p;
@@ -206,6 +214,7 @@ void DFS(Graph* G, int v)
         else if ((!proccessed[v] && parent[v] != y) || G->directed)
             proccess_edge(v, y);
 
+        if (finished) return;
         p = p->next;
     }
     proccess_vertex_late(v);
@@ -213,4 +222,15 @@ void DFS(Graph* G, int v)
     exit_time[v] = time;
 
     proccessed[v] = true;
+}
+
+void find_path(int startV, int endV, int parent[])
+{
+    if ((startV == endV) || endV == -1)
+        std::cout << startV;
+    else
+    {
+        find_path(startV, parent[endV], parent);
+        std::cout << endV;
+    }
 }
