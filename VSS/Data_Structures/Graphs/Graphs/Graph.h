@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <queue>
+
 #define MAXV    1000 /* Maximum number of vertices */
 
 class Edgenode
@@ -24,6 +27,7 @@ public:
 void graph_init(Graph* g, bool directed);
 void insert_edge(Graph* g, int x, int y, bool directed);
 void print_Graph(Graph* g);
+
 void initialize_search(Graph* G);
 void BFS(Graph* G, int startV);
 void proccess_vertex_early(int v);

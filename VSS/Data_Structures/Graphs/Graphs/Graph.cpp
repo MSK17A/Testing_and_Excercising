@@ -1,11 +1,4 @@
 #include "Graph.h"
-#include <iostream>
-#include <queue>
-
-#define UNCOLORED 0
-#define BLACK 1
-#define WHITE 2
-int color[MAXV + 1];
 
 void graph_init(Graph* g, bool directed)
 {
@@ -66,6 +59,11 @@ void print_Graph(Graph* g)
 bool proccessed[MAXV + 1];
 bool discovered[MAXV + 1];
 int parent[MAXV + 1];
+
+#define UNCOLORED 0
+#define BLACK 1
+#define WHITE 2
+int color[MAXV + 1];
 
 void initialize_search(Graph* G)
 {
@@ -175,7 +173,7 @@ int oppositeColor(int color)
 {
     if (color == WHITE)
         return BLACK;
-    if(color == BLACK)
+    if (color == BLACK)
         return WHITE;
 
     return UNCOLORED;
@@ -196,7 +194,7 @@ void DFS(Graph* G, int v)
     entry_time[v] = time;
 
     p = G->edges[v];
-    while (p !=NULL )
+    while (p != NULL)
     {
         y = p->y;
         if (!discovered[y])
