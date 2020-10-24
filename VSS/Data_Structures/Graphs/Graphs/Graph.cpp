@@ -142,13 +142,16 @@ void proccess_edge(int x, int y)
     }
 
     color[y] = oppositeColor(color[x]);*/
+    int Class;
+    Class = edge_classification(x, y);
 
-    int Class = edge_classification(x, y);
     if (Class == 0)
         tree_out_degree[x]++;
     if((Class == 1) && (parent[y] != x))
-        if (entry_time[y] < entry_time[reachable_ancestor[x]])
-            reachable_ancestor[x] = y;
+        if (entry_time[y] < entry_time[reachable_ancestor[x]]) /* to ensure that reachable_ancestor of x is the oldest ancestor */
+        {
+            reachable_ancestor[x] = y; std::cout << reachable_ancestor[x] << std::endl;
+        }
 }
 
 void connected_components(Graph* G)
