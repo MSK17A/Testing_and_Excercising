@@ -7,11 +7,15 @@ int parent[MAXV + 1];
 #define UNCOLORED 0
 #define BLACK 1
 #define WHITE 2
+#define TREE 0;
+#define BACK 1;
 int color[MAXV + 1];
 
 int time = 0;
 int entry_time[MAXV + 1];
 int exit_time[MAXV + 1];
+int tree_out_degree[MAXV + 1];
+int reachable_ancestor[MAXV + 1];
 bool finished = false;
 
 void graph_init(Graph* g, bool directed)
@@ -117,6 +121,7 @@ void BFS(Graph* G, int startV)
 
 void proccess_vertex_early(int v)
 {
+    reachable_ancestor[v] = v;
 }
 
 void proccess_vertex_late(int v)
@@ -138,12 +143,12 @@ void proccess_edge(int x, int y)
 
     color[y] = oppositeColor(color[x]);*/
 
-    if (discovered[y] && parent[x] != y)
-    {
-        std::cout << "Edge found (" << x << "," << y << ")" << std::endl;
-        find_path(y, x, parent);
-        finished = true;
-    }
+    int Class = edge_classification(x, y);
+    if (Class == 0)
+        tree_out_degree[x]++;
+    if((Class == 1) && (parent[y] != x))
+        if (entry_time[y] < entry_time[reachable_ancestor[x]])
+            reachable_ancestor[x] = y;
 }
 
 void connected_components(Graph* G)
@@ -197,10 +202,10 @@ void DFS(Graph* G, int v)
     int y;
 
     discovered[v] = true;
-    proccess_vertex_early(v);
     time++;
     entry_time[v] = time;
 
+    proccess_vertex_early(v);
     p = G->edges[v];
     while (p != NULL)
     {
@@ -222,6 +227,16 @@ void DFS(Graph* G, int v)
     exit_time[v] = time;
 
     proccessed[v] = true;
+}
+
+int edge_classification(int x, int y)
+{
+    if (discovered[y] && parent[x] != y)
+    {
+        return BACK;
+    }
+    else
+        return TREE;
 }
 
 void find_path(int startV, int endV, int parent[])
