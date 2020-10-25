@@ -1,6 +1,3 @@
 ﻿  Graph.cpp
-C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\Graphs\Graph.cpp(134,9): warning C4101: 'time_parent': unreferenced local variable
-C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\Graphs\Graph.cpp(133,9): warning C4101: 'time_v': unreferenced local variable
-  Source.cpp
-  Generating Code...
+C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\Graphs\Graph.cpp(282): warning C4715: 'edge_classification': not all control paths return a value
   Graphs.vcxproj -> C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\x64\Debug\Graphs.exe

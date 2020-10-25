@@ -129,9 +129,9 @@ void proccess_vertex_late(int v)
     std::cout << "proccessed vertex " << v;
     std::cout << std::endl;
 
-    bool root;
-    int time_v;
-    int time_parent;
+    bool root; /* is the vertex the root of the DFS tree? */ 
+    int time_v; /* earliest reachable time for v */ 
+    int time_parent; /* earliest reachable time for parent[v] */
 
     if (parent[v] < 1) /* Root test (if it has no parent then it is a root */
     {
@@ -154,6 +154,18 @@ void proccess_vertex_late(int v)
         if (reachable_ancestor[v] == v)
         {
             std::cout << "Bridge articulation vertex: " << parent[v] << std::endl;
+        }
+        if (tree_out_degree[v] > 0) /* Test if v is not a leaf */
+        {
+            std::cout << "Bridge articulation vertex: " << v << std::endl;
+        }
+
+        time_v = entry_time[reachable_ancestor[v]];
+        time_parent = entry_time[reachable_ancestor[parent[v]]];
+
+        if (time_v < time_parent)
+        {
+            reachable_ancestor[parent[v]] = reachable_ancestor[v];
         }
     }
 }
@@ -263,12 +275,10 @@ void DFS(Graph* G, int v)
 
 int edge_classification(int x, int y)
 {
-    if (discovered[y] && parent[x] != y)
-    {
-        return BACK;
-    }
-    else
-        return TREE;
+    if (parent[y] == x) return(0);
+    if (discovered[y] && !proccessed[y]) return(1);
+    if (proccessed[y] && (entry_time[y] > entry_time[x])) return(2);
+    if (proccessed[y] && (entry_time[y] < entry_time[x])) return(3);
 }
 
 void find_path(int startV, int endV, int parent[])
