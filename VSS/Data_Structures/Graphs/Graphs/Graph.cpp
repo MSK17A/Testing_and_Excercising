@@ -14,7 +14,7 @@ int color[MAXV + 1];
 int time = 0;
 int entry_time[MAXV + 1];
 int exit_time[MAXV + 1];
-int tree_out_degree[MAXV + 1];
+int tree_out_degree[MAXV + 1]; /* Degree of each vertex in DFS tree */
 int reachable_ancestor[MAXV + 1];
 bool finished = false;
 
@@ -128,6 +128,34 @@ void proccess_vertex_late(int v)
 {
     std::cout << "proccessed vertex " << v;
     std::cout << std::endl;
+
+    bool root;
+    int time_v;
+    int time_parent;
+
+    if (parent[v] < 1) /* Root test (if it has no parent then it is a root */
+    {
+        if (tree_out_degree[v] > 1)
+        {
+            std::cout << "Root articulation vertex: " << v << std::endl;
+        }
+        return;
+    }
+
+    root = (parent[parent[v]] < 1); /* Test if parent[v] is root */
+
+    if (!root)
+    {
+        if (reachable_ancestor[v] == parent[v])
+        {
+            std::cout << "Parent articulation vertex: " << parent[v] << std::endl;
+        }
+
+        if (reachable_ancestor[v] == v)
+        {
+            std::cout << "Bridge articulation vertex: " << parent[v] << std::endl;
+        }
+    }
 }
 
 void proccess_edge(int x, int y)
@@ -147,10 +175,11 @@ void proccess_edge(int x, int y)
 
     if (Class == 0)
         tree_out_degree[x]++;
-    if((Class == 1) && (parent[y] != x))
+    if((Class == 1) && (parent[x] != y))
         if (entry_time[y] < entry_time[reachable_ancestor[x]]) /* to ensure that reachable_ancestor of x is the oldest ancestor */
         {
-            reachable_ancestor[x] = y; std::cout << reachable_ancestor[x] << std::endl;
+            reachable_ancestor[x] = y;
+            std::cout << reachable_ancestor[x] << std::endl;
         }
 }
 
