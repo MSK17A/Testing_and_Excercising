@@ -7,8 +7,6 @@ int parent[MAXV + 1];
 #define UNCOLORED 0
 #define BLACK 1
 #define WHITE 2
-#define TREE 0;
-#define BACK 1;
 int color[MAXV + 1];
 
 int time = 0;
@@ -279,6 +277,11 @@ int edge_classification(int x, int y)
     if (discovered[y] && !proccessed[y]) return(1);
     if (proccessed[y] && (entry_time[y] > entry_time[x])) return(2);
     if (proccessed[y] && (entry_time[y] < entry_time[x])) return(3);
+
+    /* TREE = 0
+    BACK = 1
+    FORWARD = 2
+    CROSS = 3 */
 }
 
 void find_path(int startV, int endV, int parent[])
