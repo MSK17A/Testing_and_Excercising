@@ -1,3 +1,5 @@
 ﻿  Graph.cpp
-C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\Graphs\Graph.cpp(282): warning C4715: 'edge_classification': not all control paths return a value
-  Graphs.vcxproj -> C:\Users\M-SK\Documents\c++\Experiments_and_Excercises\Testing_and_Excercising\VSS\Data_Structures\Graphs\x64\Debug\Graphs.exe
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\yvals.h(12,10): fatal error C1083: Cannot open include file: 'crtdbg.h': No such file or directory
+  Source.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\yvals.h(12,10): fatal error C1083: Cannot open include file: 'crtdbg.h': No such file or directory
+  Generating Code...
