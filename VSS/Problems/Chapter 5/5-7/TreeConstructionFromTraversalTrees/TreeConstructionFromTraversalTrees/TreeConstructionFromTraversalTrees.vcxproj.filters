@@ -21,9 +21,15 @@
     <ClCompile Include="BinarySearchTrees.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Problem5_7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Problem5_7.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

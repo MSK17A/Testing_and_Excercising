@@ -1,18 +1,16 @@
 #include<iostream>
 #include"BinarySearchTrees.h"
+#include"Problem5_7.h"
 
 using namespace std;
 
 int main()
 {
-	tree* Tree;
-	Tree = new tree();
+	tree* head = new tree();
+	int pre[] = { 0,1,3,4,5,2 };
+	int in[] = { 4,3,5,1,0,2 };
 
-	int discovered[6];
-	int pre_order[6];
-	int in_order[6];
-
-
+	Traverse_To_Tree(head, pre, in);
 
 	return 0;
 }

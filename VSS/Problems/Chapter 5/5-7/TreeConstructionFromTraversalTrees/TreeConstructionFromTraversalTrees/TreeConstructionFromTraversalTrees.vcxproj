@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="BinarySearchTrees.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Problem5_7.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTrees.h" />
+    <ClInclude Include="Problem5_7.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
